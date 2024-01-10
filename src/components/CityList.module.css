@@ -1,0 +1,19 @@
+.linkContainer {
+    margin-bottom: 7px; 
+  }
+  
+  .linkStyle {
+    display: inline-block;
+    padding: 8px;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  
+  .linkStyle:hover {
+    color: var(--hover-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
+  }
+  
