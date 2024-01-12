@@ -1,45 +1,61 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { apiKey } from '../constants';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './SearchCity.module.css'; 
 
-function SearchCity() {
-  const [city, setCity] = useState('');
-  const [weatherData, setWeatherData] = useState(null);
+const SearchCity = ({ setSearchQuery }) => {
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
+  useEffect(() => {
+    const fetchCities = async () => {
+      try {
+        if (searchTerm.trim() === '') {
+          setSearchResults([]);
+          return;
+        }
 
-  const getWeatherData = async () => {
-    try {
-      const response = await axios.get(
-        `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
-      );
-      setWeatherData(response.data);
-    } catch (error) {
-      console.error('Errore nella richiesta API:', error.message);
-    }
+        const response = await fetch(
+          `http://api.weatherapi.com/v1/search.json?key=14a83ea940ef4d45b5b103446240401&q=${searchTerm}`
+        );
+
+        if (!response.ok) {
+          throw new Error('Errore nella ricerca delle città');
+        }
+
+        const data = await response.json();
+        setSearchResults(data);
+      } catch (error) {
+        console.error('Errore nella ricerca delle città:', error);
+      }
+    };
+
+    fetchCities();
+  }, [searchTerm]);
+
+  const handleSearch = (query) => {
+    setSearchTerm(query);
+    setSearchQuery(query);
   };
 
   return (
-    <div>
-      <h1>App Meteo</h1>
-      <label>
-        Inserisci il nome della città:
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-      </label>
-      <button onClick={getWeatherData}>Dati meteo</button>
-      {weatherData && (
-        <div>
-          <h2>{weatherData.location.name}</h2>
-          <p>Temperatura: {weatherData.current.temp_c}°C</p>
-          <p>Condizioni: {weatherData.current.condition.text}</p>
-          <p>Condizioni:  <img src={weatherData.current.condition.icon} alt="Condizioni" /></p>
-        </div>
-      )}
+    <div className={styles.searchContainer}>
+      <input
+        type="text"
+        placeholder="Cerca città..."
+        onChange={(e) => handleSearch(e.target.value)}
+        className={styles.searchInput}
+      />
+      <ul className={styles.searchResults}>
+        {searchResults.map((city) => (
+          <li key={city.id}>
+            <Link to={`/details/${city.name}`} className={styles.resultLink}>{city.name}, {city.country}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
-}
+};
 
-export default SearchCity; 
+export default SearchCity;
+
+

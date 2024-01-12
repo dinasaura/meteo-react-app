@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./CityDetails.module.css";
+import { v4 as uuidv4 } from 'uuid';
 
-const CityDetails = () => {
+const CityDetails = ({ cities, favorites, onAddToFavorites }) => {
   const { cityName } = useParams();
   const [details, setDetails] = useState(null);
   const [threeDayForecast, setThreeDayForecast] = useState(null);
@@ -62,6 +63,12 @@ const CityDetails = () => {
     );
   };
 
+  const handleAddToFavoritesFromDetails = () => {
+    onAddToFavorites({ id: uuidv4(), name: details.location.name, details });
+    
+    navigate("/favorites");
+  };
+
   return (
     <div className={styles.cityDetailsContainer}>
       {details ? (
@@ -91,6 +98,12 @@ const CityDetails = () => {
           <p className={styles.missingData}>
                Ora dell'ultima osservazione: {details.current.last_updated || 'Dato non disponibile'}
               </p>
+              <button
+            className={styles.addToFavoritesButton}
+            onClick={handleAddToFavoritesFromDetails}
+          >
+            Aggiungi alle preferite
+          </button>
           {showThreeDayForecast && renderThreeDayForecast()}
           <button
             className={styles.showMoreButton}
