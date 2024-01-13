@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './SearchCity.module.css'; 
 
-const SearchCity = ({ setSearchQuery }) => {
+const SearchCity = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -34,7 +34,6 @@ const SearchCity = ({ setSearchQuery }) => {
 
   const handleSearch = (query) => {
     setSearchTerm(query);
-    setSearchQuery(query);
   };
 
   return (
@@ -45,13 +44,17 @@ const SearchCity = ({ setSearchQuery }) => {
         onChange={(e) => handleSearch(e.target.value)}
         className={styles.searchInput}
       />
-      <ul className={styles.searchResults}>
-        {searchResults.map((city) => (
-          <li key={city.id}>
-            <Link to={`/details/${city.name}`} className={styles.resultLink}>{city.name}, {city.country}</Link>
-          </li>
-        ))}
-      </ul>
+
+      {searchTerm && ( 
+              <ul className={styles.searchResults}>
+              {searchResults.map((city) => (
+                <li key={city.id}>
+                  <Link to={`/details/${city.name}`} className={styles.resultLink}>{city.name}, {city.country}</Link>
+                </li>
+              ))}
+            </ul>
+      ) }
+      
     </div>
   );
 };

@@ -2,14 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./CityDetails.module.css";
-import { v4 as uuidv4 } from 'uuid';
+import useFavoritesCities from "../hooks/useFavoritesCities";
+import { v4 as uuidv4 } from "uuid";
 
-const CityDetails = ({ cities, favorites, onAddToFavorites }) => {
+const CityDetails = () => {
   const { cityName } = useParams();
   const [details, setDetails] = useState(null);
   const [threeDayForecast, setThreeDayForecast] = useState(null);
   const [showThreeDayForecast, setShowThreeDayForecast] = useState(false);
   const navigate = useNavigate();
+
+  const {favorites, addFavorite, removeFavorite} = useFavoritesCities();
+
+  const isFavorite = favorites.some((item )=> (item.name === cityName ) );
+
+  console.log('favorite:' , isFavorite )
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +29,6 @@ const CityDetails = ({ cities, favorites, onAddToFavorites }) => {
         const cityData = response.data;
         setDetails(cityData);
 
-        // previsioni tre giorni
         const forecastResponse = await axios.get(
           `https://api.weatherapi.com/v1/forecast.json?key=14a83ea940ef4d45b5b103446240401&q=${cityName}&days=3&aqi=no&alerts=yes`
         );
@@ -63,12 +69,13 @@ const CityDetails = ({ cities, favorites, onAddToFavorites }) => {
     );
   };
 
-  const handleAddToFavoritesFromDetails = () => {
-    onAddToFavorites({ id: uuidv4(), name: details.location.name, details });
-    
-    navigate("/favorites");
+  const handleToggleFavorites = () => {
+    if (isFavorite) {
+      removeFavorite(cityName);
+    } else {
+      addFavorite({ id: uuidv4(), name: details.location.name, details });
+    }
   };
-
   return (
     <div className={styles.cityDetailsContainer}>
       {details ? (
@@ -99,14 +106,14 @@ const CityDetails = ({ cities, favorites, onAddToFavorites }) => {
                Ora dell'ultima osservazione: {details.current.last_updated || 'Dato non disponibile'}
               </p>
               <button
-            className={styles.addToFavoritesButton}
-            onClick={handleAddToFavoritesFromDetails}
+            className={`${styles.addToFavoritesButton} ${isFavorite ? styles.removeFavoriteButton : styles.addFavoriteButton}`}
+            onClick={handleToggleFavorites}
           >
-            Aggiungi alle preferite
+            {isFavorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"}
           </button>
           {showThreeDayForecast && renderThreeDayForecast()}
           <button
-            className={styles.showMoreButton}
+            className={`${styles.showMoreButton}`}
             onClick={toggleThreeDayForecast}
           >
             {showThreeDayForecast ? "Mostra di meno" : "Mostra di più"}

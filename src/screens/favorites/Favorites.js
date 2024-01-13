@@ -1,31 +1,24 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from './Favorite.module.css'
+import useFavoritesCities from "../../hooks/useFavoritesCities";
 
-const Favorites = ({ favorites, onCityClick, onRemoveFromFavorites }) => {
-  useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    console.log("Stored Favorites:", storedFavorites);
-    onCityClick(storedFavorites);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
+const Favorites = () => {
+  const { favorites, removeFavorite } = useFavoritesCities();
 
   return (
     <div className={styles.favoritesContainer}>
-      <h2>Città Preferite :</h2>
+      <h2>Città Preferite:</h2>
       <ul>
         {favorites.map((city) => (
-          <li key={city.id} className={styles.favoriteItem}>
+          <li key={`${city.name}-${city.id}`} className={styles.favoriteItem}>
             {city.name}, {city.details && city.details.location.country}
             <div className={styles.buttonContainer}>
               <Link to={`/details/${city.name}`} className={styles.detailsButton}>
                 Dettagli
               </Link>
               <button
-                onClick={() => onRemoveFromFavorites(city.id)}
+                onClick={() => removeFavorite(city.name)}
                 className={styles.removeButton}
               >
                 Rimuovi

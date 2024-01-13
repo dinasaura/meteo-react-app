@@ -60,7 +60,7 @@
   }
 
   .showMoreButton {
-    background-color: #4CAF50;
+    background-color: #43add7;
     color: white;
     padding: 10px 20px;
     font-size: 16px;
@@ -72,8 +72,8 @@
   }
 
   .showMoreButton:hover {
-    background-color: #59d743; 
-    box-shadow: 0 0 5px rgba(64, 237, 58, 0.5);
+    background-color: #2686b0; 
+    box-shadow: 0 0 5px rgba(58, 142, 237, 0.5);
   }
 
   .addToFavoritesButton{
@@ -83,12 +83,30 @@
     cursor: pointer;
     font-size: 16px; 
     transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-    background-color: #d64d4d;
+    background-color: #20c411;
     color: #fff;
   }
 
   .addToFavoritesButton:hover {
-    background-color: #f73b3b; 
+    background-color: #21b237 ; 
+    box-shadow: 0 0 5px rgba(58, 237, 58, 0.5);
+  }
+  
+  .removeFavoriteButton {
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; 
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    background-color: red;
+    color: #fff;
+  }
+
+  .removeFavoriteButton:hover{
+    background-color: #b22121 ; 
     box-shadow: 0 0 5px rgba(237, 58, 58, 0.5);
   }
   
+
+  
+ 

@@ -1,5 +1,5 @@
 import React from "react";
-import CityList from "./CityList";
+import CityList from "../../components/CityList";
 import styles from "./Home.module.css";
 
 const Home = ({ cities, onCityClick }) => {
