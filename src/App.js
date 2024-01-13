@@ -37,12 +37,6 @@ const App = () => {
           }
         />
         <Route
-          path="/search"
-          element={
-            <SearchCity cities={cities} />
-          }
-        />
-        <Route
           path="/favorites"
           element={
             <Favorites

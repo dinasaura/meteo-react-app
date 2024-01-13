@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import styles from './SearchCity.module.css'; 
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import styles from "./SearchCity.module.css";
 
 const SearchCity = () => {
   const [searchResults, setSearchResults] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showResults, setShowResults] = useState(true);
 
   useEffect(() => {
     const fetchCities = async () => {
       try {
-        if (searchTerm.trim() === '') {
+        if (searchTerm.trim() === "") {
           setSearchResults([]);
           return;
         }
@@ -19,13 +20,14 @@ const SearchCity = () => {
         );
 
         if (!response.ok) {
-          throw new Error('Errore nella ricerca delle città');
+          throw new Error("Errore nella ricerca delle città");
         }
 
         const data = await response.json();
         setSearchResults(data);
+        setShowResults(true);
       } catch (error) {
-        console.error('Errore nella ricerca delle città:', error);
+        console.error("Errore nella ricerca delle città:", error);
       }
     };
 
@@ -34,6 +36,12 @@ const SearchCity = () => {
 
   const handleSearch = (query) => {
     setSearchTerm(query);
+    setShowResults(true);
+  };
+
+  const handleCityClick = () => {
+    setShowResults(false);
+    setSearchTerm("");
   };
 
   return (
@@ -41,24 +49,28 @@ const SearchCity = () => {
       <input
         type="text"
         placeholder="Cerca città..."
+        value={searchTerm}
         onChange={(e) => handleSearch(e.target.value)}
         className={styles.searchInput}
       />
 
-      {searchTerm && ( 
-              <ul className={styles.searchResults}>
-              {searchResults.map((city) => (
-                <li key={city.id}>
-                  <Link to={`/details/${city.name}`} className={styles.resultLink}>{city.name}, {city.country}</Link>
-                </li>
-              ))}
-            </ul>
-      ) }
-      
+      {showResults && searchTerm && (
+        <ul className={styles.searchResults}>
+          {searchResults.map((city) => (
+            <li key={city.id}>
+              <Link
+                to={`/details/${city.name}`}
+                className={styles.resultLink}
+                onClick={handleCityClick}
+              >
+                {city.name}, {city.country}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
 
 export default SearchCity;
-
-
