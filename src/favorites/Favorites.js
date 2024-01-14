@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from './Favorite.module.css'
-import useFavoritesCities from "../../hooks/useFavoritesCities";
+import useFavoritesCities from "../hooks/useFavoritesCities";
 
 const Favorites = () => {
   const { favorites, removeFavorite } = useFavoritesCities();
@@ -9,10 +9,11 @@ const Favorites = () => {
   return (
     <div className={styles.favoritesContainer}>
       <h2>Città Preferite:</h2>
-      <ul>
+      <ul className={styles.favoritesContainerCity}>
         {favorites.map((city) => (
           <li key={`${city.name}-${city.id}`} className={styles.favoriteItem}>
-            {city.name}, {city.details && city.details.location.country}
+            <div className={styles.cityNameFavorites}>{city.name}, </div> 
+            <div className={styles.countryNameFavorites}>{city.details && city.details.location.country}</div> 
             <div className={styles.buttonContainer}>
               <Link to={`/details/${city.name}`} className={styles.detailsButton}>
                 Dettagli

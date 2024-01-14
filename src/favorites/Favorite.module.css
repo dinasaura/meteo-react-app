@@ -1,19 +1,27 @@
 .favoritesContainer {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 20px;
+    flex: 1;
+    padding-right: 8rem;
+    padding-left: 8rem;
+  }
 
+  .favoritesContainerCity{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
   }
   
   .favoriteItem {
-    padding: 30px;
-    border: 1px solid #ac0b0b;
-    border-radius: 8px;
+    padding: 2rem;
+    border-radius: 4px;
+    box-shadow: 2px 0 15px rgba(183, 198, 227, 0.479);
     list-style: none; 
     font-size: 25px;
     margin-bottom: 20px;
+    text-transform: uppercase;
+    max-width: 100%;
   }
   
   .buttonContainer {
@@ -56,3 +64,12 @@
     box-shadow: 0 0 5px rgba(237, 58, 58, 0.5);
   }
   
+  .cityNameFavorites {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  
+  .countryNameFavorites {
+    font-size: 16px;
+    padding-bottom: 18px;
+  }

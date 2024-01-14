@@ -1,9 +1,9 @@
-/* src/components/Home.module.css */
 .homeContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 400px;
+  margin: 0 auto; 
   }
   
   .addButton {

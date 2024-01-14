@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./screens/Home/Home";
 import CityDetails from "./components/CityDetails";
-import SearchCity from "./searchCity/SearchCity";
-import Favorites from "./screens/favorites/Favorites";
+import Favorites from "./favorites/Favorites";
 import { v4 as uuidv4 } from "uuid";
 import Navbar from "./components/NavBar";
 
 const App = () => {
   const [cities, setCities] = useState([
-    { id: uuidv4(), name: "London", details: {} },
-    { id: uuidv4(), name: "Paris", details: {} },
-    { id: uuidv4(), name: "New York", details: {} },
-    { id: uuidv4(), name: "Tokyo", details: {} },
+    { id: uuidv4(), name: "London", country: 'United Kingdom', details: {} },
+    { id: uuidv4(), name: "Paris", country: 'France', details: {} },
+    { id: uuidv4(), name: "New York", country: 'United States of America', details: {} },
+    { id: uuidv4(), name: "Tokyo", country: 'Japan', details: {} },
   ]);
 
   const handleCityClick = async (cityName) => {

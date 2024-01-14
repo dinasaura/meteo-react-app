@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import styles from './CityList.module.css';
 
 const CityList = ({ cities, onCityClick }) => (
-  <div>
-    <h1>Lista Città</h1>
-    <ul>
+  <div className={styles.cityListContainer}>
+    <ul className={styles.cityContainerPoint}>
       {cities.map(city => (
-        <li key={city.id} className={styles.linkContainer}>
+        <li key={city.id} className={styles.cityContainer}>
           <Link to={`/details/${city.name}`} onClick={() => onCityClick(city.name)} className={styles.linkStyle}>
-            {city.name}
+          <div className={styles.cityName}>{city.name}</div>
+            <div className={styles.countryName}>{city.country}</div>
           </Link>
         </li>
       ))}
@@ -18,4 +18,5 @@ const CityList = ({ cities, onCityClick }) => (
 );
 
 export default CityList;
+
 
