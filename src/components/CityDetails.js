@@ -85,7 +85,7 @@ const CityDetails = () => {
           </h2>
           <p>Regione: {details.location.region}</p>
           <div className={styles.weatherIconContainer}>
-              <img src={details.current.condition.icon} alt="Weather" />
+              <img src={details.current.condition.icon} alt="Weather" className={styles.weatherIcon}/>
             </div>
           <div className={styles.detailsContainer}>
             <div className={styles.weatherDetails}>

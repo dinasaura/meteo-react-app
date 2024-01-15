@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from './Favorite.module.css'
-import useFavoritesCities from "../hooks/useFavoritesCities";
+import useFavoritesCities from "../../hooks/useFavoritesCities";
 
 const Favorites = () => {
   const { favorites, removeFavorite } = useFavoritesCities();
