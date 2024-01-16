@@ -53,18 +53,20 @@ const CityDetails = () => {
   return (
     <div className={styles.cityDetailsContainer}>
       {details ? (
-        <div>
+        <div className={styles.cityDetailsForContainer}>
+          <div className={styles.cityDetailsForDetails}>
           <h2>
             {details.location.name}, {details.location.country}
           </h2>
           <p>Regione: {details.location.region}</p>
-
+          <div>
           <div className={styles.weatherIconContainer}>
             <img
               src={details.current.condition.icon}
               alt="Weather"
               className={styles.weatherIcon}
             />
+          </div>
           </div>
           <div className={styles.detailsContainer}>
             <div className={styles.weatherDetails}>
@@ -97,7 +99,7 @@ const CityDetails = () => {
               {isFavorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"}
             </button>
           </div>
-
+          </div>
           <div className={styles.sevenDayForecastContainer}>
             {sevenDayForecast &&
               sevenDayForecast.map((day) => (

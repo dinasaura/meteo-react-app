@@ -2,28 +2,33 @@
     align-items: center;
     text-align: center;
     flex: 1;
-    padding-right: 8rem;
-    padding-left: 8rem;
+    padding-right: 40px;
+    padding-left: 40px;
   }
+
+  .favoritesContainer ul {
+    margin: 0;
+    padding: 0;
+   }
 
   .favoritesContainerCity{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
   }
   
   .favoriteItem {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     padding: 2rem;
     border-radius: 4px;
     box-shadow: 2px 0 15px rgba(183, 198, 227, 0.479);
     list-style: none; 
     font-size: 25px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
     max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    box-sizing: border-box;
   }
   
   .buttonContainer {
@@ -69,10 +74,20 @@
   .cityNameFavorites {
     font-size: 24px;
     margin-bottom: 8px;
+    text-transform: uppercase;
   }
   
   .countryNameFavorites {
     font-size: 16px;
     padding-bottom: 18px;
     color: rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 750px) {
+  
+    .favoritesContainerCity{
+      flex-direction: column;
+    }
+
   }

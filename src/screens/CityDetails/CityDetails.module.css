@@ -1,7 +1,50 @@
 .cityDetailsContainer {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .cityDetailsForContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto;
+  }
+
+  .cityDetailsForDetails{
+   width: 50%;
+  }
+  
+  .weatherIconContainer {
+    max-width: 100px;
+    max-height: 100px;
+  }
+  
+  .weatherDetails {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .sevenDayForecastContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+  }
+  
+  .dayForecastItem {
+    flex-basis: calc(33.333% - 20px);
+    box-sizing: border-box;
+    background-color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
   }
 
   
@@ -56,16 +99,9 @@
   .returnLink:hover {
     color: var(--hover-color);
   }
-  
-  .threeDayForecast{
-    display: flex;
-    flex-direction: column;
-  }
 
-  .threeDayForecastContainer{
-    display: flex;
-    flex-direction: row;
-    gap: 25px;
+  .sevenDayForecastContainer{
+    max-width: 50%;
   }
 
   .showMoreButton {
@@ -132,6 +168,39 @@
     box-shadow: var(--box-shadow);
     text-align: center;
   }
+
+  @media screen and (max-width: 750px) {
+    .cityDetailsForContainer {
+      width: auto;
+    } 
+
+    .cityDetailsForContainer {
+      flex-direction: column;
+      padding: 20px;
+      justify-content: center;
+    }
+  
+    .sevenDayForecastContainer {
+      justify-content: center;
+    }
+  
+    .dayForecastItem {
+      flex-basis: 100%;
+    }
+    .cityDetailsForDetails{
+      width: 100%;
+     }
+     .sevenDayForecastContainer{
+      max-width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 375px) {
+  .detailsContainer{
+    flex-direction: column;
+  }
+}
+  
 
   
  
