@@ -30,5 +30,47 @@
   text-transform: uppercase;
  }
 
+ .cityContainer {
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.cityListContainer{
+  flex: 1 ;
+}
+
+.cityContainerPoint{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style: none; 
+  gap: 20px;
+}
+
+.linkStyle {
+  display: block;
+  color: black;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  text-transform: uppercase;
+  padding: 15px;
+}
+
+.linkStyle:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.cityName {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.countryName {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
 
   

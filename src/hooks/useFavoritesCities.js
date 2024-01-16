@@ -1,4 +1,3 @@
-// useFavoritesCities.js
 import { useState } from "react";
 
 const useFavoritesCities = () => {

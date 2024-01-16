@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
-import logo from '../file/logo.png'; 
-import SearchCity from '../searchCity/SearchCity';
+import logo from '../../data/file/logo.png'; 
+import SearchCity from '../SearchCity/SearchCity';
 
 const Navbar = () => {
   return (

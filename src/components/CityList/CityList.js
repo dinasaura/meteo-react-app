@@ -1,13 +1,14 @@
-import React from 'react';
+import React  from 'react';
 import { Link } from 'react-router-dom';
 import styles from './CityList.module.css';
+import citiesData from '../../data/citiesData/citiesData';
 
-const CityList = ({ cities, onCityClick }) => (
+const CityList = () => (
   <div className={styles.cityListContainer}>
     <ul className={styles.cityContainerPoint}>
-      {cities.map(city => (
+      {citiesData.map(city => (
         <li key={city.id} className={styles.cityContainer}>
-          <Link to={`/details/${city.name}`} onClick={() => onCityClick(city.name)} className={styles.linkStyle}>
+          <Link to={`/details/${city.name}`} className={styles.linkStyle}>
           <div className={styles.cityName}>{city.name}</div>
             <div className={styles.countryName}>{city.country}</div>
           </Link>
@@ -15,7 +16,9 @@ const CityList = ({ cities, onCityClick }) => (
       ))}
     </ul>
   </div>
+
 );
+
 
 export default CityList;
 
