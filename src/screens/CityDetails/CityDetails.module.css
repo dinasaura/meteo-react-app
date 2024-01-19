@@ -1,16 +1,10 @@
 .cityDetailsContainer {
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
   }
   
   .cityDetailsForContainer {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    max-width: 1200px; 
     margin: 0 auto;
   }
 
@@ -35,7 +29,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: flex-start;
+    justify-content:center;
   }
   
   .dayForecastItem {
@@ -84,6 +78,7 @@
   }
   
   .missingData {
+    padding-top: 10px;
     font-size: 14px;
     opacity: 0.7; 
   }
@@ -101,25 +96,26 @@
   }
 
   .sevenDayForecastContainer{
-    max-width: 50%;
+    max-width: 100%;
   }
 
-  .showMoreButton {
-    background-color: #43add7;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  .sevenDayForecastContainer {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 15px;
+    margin-top: 12px;
+  }
+  
+  .dayForecastItem {
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    cursor:text;
   }
 
-  .showMoreButton:hover {
-    background-color: #2686b0; 
-    box-shadow: 0 0 5px rgba(58, 142, 237, 0.5);
-  }
+
 
   .addToFavoritesButton{
     padding: 12px;
@@ -130,7 +126,7 @@
     transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
     background-color: #20c411;
     color: #fff;
-    margin-right: 15px;
+    margin-top: 25px;
   }
 
   .addToFavoritesButton:hover {
@@ -153,22 +149,6 @@
     box-shadow: 0 0 5px rgba(237, 58, 58, 0.5);
   }
   
-  .sevenDayForecastContainer {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 15px;
-    margin-top: 12px;
-  }
-  
-  .dayForecastItem {
-    flex-basis: calc(25% - 15px);
-    box-sizing: border-box;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: var(--box-shadow);
-    text-align: center;
-  }
-
   @media screen and (max-width: 750px) {
     .cityDetailsForContainer {
       width: auto;

@@ -13,7 +13,7 @@ app.use(cors());
 app.get('/api/weather/:city', async (req, res) => {
   try {
     const cityName = req.params.city;
-    const apiKey = '14a83ea940ef4d45b5b103446240401'; // Sostituisci con la tua chiave API
+    const apiKey = '14a83ea940ef4d45b5b103446240401';
     const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${cityName}&aqi=no`;
 
     const response = await axios.get(apiUrl);

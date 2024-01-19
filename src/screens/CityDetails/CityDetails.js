@@ -4,6 +4,8 @@ import axios from "axios";
 import styles from "./CityDetails.module.css";
 import useFavoritesCities from "../../hooks/useFavoritesCities";
 import { v4 as uuidv4 } from "uuid";
+import { format } from 'date-fns';
+import it from 'date-fns/locale/it';
 
 const CityDetails = () => {
   const { cityName } = useParams();
@@ -14,6 +16,7 @@ const CityDetails = () => {
   const { favorites, addFavorite, removeFavorite } = useFavoritesCities();
 
   const isFavorite = favorites.some((item) => item.name === cityName);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +32,7 @@ const CityDetails = () => {
         const forecastResponse = await axios.get(
           `https://api.weatherapi.com/v1/forecast.json?key=14a83ea940ef4d45b5b103446240401&q=${cityName}&days=7&aqi=no&alerts=yes`
         );
+        console.log("Forecast Data:", forecastResponse.data);
         const forecastData = forecastResponse.data;
         setSevenDayForecast(
           forecastData.forecast && forecastData.forecast.forecastday
@@ -100,16 +104,26 @@ const CityDetails = () => {
             </button>
           </div>
           </div>
+          <div className={styles.sevenDayForecastContainer} ><p>Previsioni per i prossimi giorni:</p>
           <div className={styles.sevenDayForecastContainer}>
             {sevenDayForecast &&
-              sevenDayForecast.map((day) => (
-                <div key={day.date} className={styles.dayForecastItem}>
-                  <p>{day.date}</p>
+              sevenDayForecast.map((day) => { 
+                const dayDate = new Date(day.date);
+                const worldDate = format(dayDate,'EEEE', {
+                  locale: it,
+                })
+                return(
+                  <div key={day.date} className={styles.dayForecastItem}>
+                  <p>{worldDate}</p>
                   <img src={day.day.condition.icon} alt="Weather" />
-                  <p>{day.day.maxtemp_c}°C</p>
+                  <p> Giorno: {day.day.maxtemp_c}°C</p>
+                  <p> Notte: {day.day.mintemp_c}°C</p>
                 </div>
-              ))}
+                )
+              }
+            )}
           </div>
+        </div>
         </div>
       ) : (
         <p>Caricamento...</p>
