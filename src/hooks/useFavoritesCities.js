@@ -33,6 +33,3 @@ const useFavoritesCities = () => {
 };
 
 export default useFavoritesCities;
-
-
-  

@@ -1,63 +1,60 @@
 .searchContainer {
   display: flex;
-    flex-grow: 1;
-    align-content: center;
-    position: relative;
+  flex-grow: 1;
+  align-content: center;
+  position: relative;
+}
 
-  }
-  
-  .searchInput {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .searchIcon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    width: 20px;
-    height: auto;
-    cursor: pointer;
-  }
-  
-  .searchResults {
-    list-style-type: none;
-    padding: 10px;
-    margin: 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #fff;
-    width: 100%;
-    max-height: 200px;
-    overflow-y: auto;
-  }
+.searchInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  
-  .searchResults li {
-    padding: 8px;
-    margin: 5px 0; 
-    cursor: pointer;
-  }
-  
-  .searchResults li::after {
-    content: ' - ' attr(data-country); 
-    font-size: 12px;
-  }
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: auto;
+  cursor: pointer;
+}
 
-  .searchResults li:hover {
-    background-color: rgba(141, 141, 146, 0.128);
-  }
+.searchResults {
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+}
 
-  .resultLink {
-    text-decoration: none; 
-    color: black; 
-  }
-  
+.searchResults li {
+  padding: 8px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.searchResults li::after {
+  content: " - " attr(data-country);
+  font-size: 12px;
+}
+
+.searchResults li:hover {
+  background-color: rgba(141, 141, 146, 0.128);
+}
+
+.resultLink {
+  text-decoration: none;
+  color: black;
+}

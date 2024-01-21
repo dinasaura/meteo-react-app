@@ -5,15 +5,15 @@
   cursor: pointer;
 }
 
-.cityListContainer{
-  flex: 1 ;
+.cityListContainer {
+  flex: 1;
 }
 
-.cityContainerPoint{
+.cityContainerPoint {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  list-style: none; 
+  list-style: none;
   gap: 20px;
 }
 

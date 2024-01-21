@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from './Favorite.module.css'
+import styles from "./Favorite.module.css";
 import useFavoritesCities from "../../hooks/useFavoritesCities";
 
 const Favorites = () => {
@@ -12,10 +12,15 @@ const Favorites = () => {
       <ul className={styles.favoritesContainerCity}>
         {favorites.map((city) => (
           <li key={`${city.name}-${city.id}`} className={styles.favoriteItem}>
-            <div className={styles.cityNameFavorites}>{city.name}, </div> 
-            <div className={styles.countryNameFavorites}>{city.details && city.details.location.country}</div> 
+            <div className={styles.cityNameFavorites}>{city.name}, </div>
+            <div className={styles.countryNameFavorites}>
+              {city.details && city.details.location.country}
+            </div>
             <div className={styles.buttonContainer}>
-              <Link to={`/details/${city.name}`} className={styles.detailsButton}>
+              <Link
+                to={`/details/${city.name}`}
+                className={styles.detailsButton}
+              >
                 Dettagli
               </Link>
               <button
@@ -31,6 +36,5 @@ const Favorites = () => {
     </div>
   );
 };
-
 
 export default Favorites;

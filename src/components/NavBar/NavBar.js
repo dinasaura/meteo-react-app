@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './NavBar.module.css';
-import logo from '../../data/file/logo.png'; 
-import SearchCity from '../SearchCity/SearchCity';
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "./NavBar.module.css";
+import logo from "../../data/file/logo.png";
+import SearchCity from "../SearchCity/SearchCity";
 
 const Navbar = () => {
   return (
@@ -13,10 +13,14 @@ const Navbar = () => {
       <SearchCity />
       <ul className={styles.navList}>
         <li>
-          <Link to="/" className={styles.navLink}>Home</Link>
+          <Link to="/" className={styles.navLink}>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/favorites" className={styles.navLink}>Preferiti</Link>
+          <Link to="/favorites" className={styles.navLink}>
+            Preferiti
+          </Link>
         </li>
       </ul>
     </nav>
