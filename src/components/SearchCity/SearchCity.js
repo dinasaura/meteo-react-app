@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import styles from "./SearchCity.module.css";
 import axios from "axios";
@@ -9,36 +9,27 @@ const SearchCity = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showResults, setShowResults] = useState(true);
 
-
-  const fetchCities = useCallback(async () => {
-    try {
-      if (searchTerm.trim() === "") {
-        setSearchResults([]);
-        return;
-      }
-
-      const response = await axios.get(
-        `http://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${searchTerm}`
-      );
-
-      setSearchResults(response.data);
-      setShowResults(true);
-    } catch (error) {
-      console.error("Errore nella ricerca delle città:", error);
-    }
-  }, [searchTerm]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetchCities();
+        if (searchTerm.trim() === "") {
+          setSearchResults([]);
+          return;
+        }
+  
+        const response = await axios.get(
+          `http://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${searchTerm}`
+        );
+  
+        setSearchResults(response.data);
+        setShowResults(true);
       } catch (error) {
         console.error("Errore nella ricerca delle città:", error);
       }
-    };
+    }
 
     fetchData();
-  }, [searchTerm, fetchCities]);
+  }, [searchTerm]);
 
   const handleSearch = (query) => {
     setSearchTerm(query);
