@@ -1,38 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import styles from "./SearchCity.module.css";
+import axios from "axios";
+import {apiKey} from "../../constants/index"
 
 const SearchCity = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [showResults, setShowResults] = useState(true);
 
+
+  const fetchCities = useCallback(async () => {
+    try {
+      if (searchTerm.trim() === "") {
+        setSearchResults([]);
+        return;
+      }
+
+      const response = await axios.get(
+        `http://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${searchTerm}`
+      );
+
+      setSearchResults(response.data);
+      setShowResults(true);
+    } catch (error) {
+      console.error("Errore nella ricerca delle città:", error);
+    }
+  }, [searchTerm]);
+
   useEffect(() => {
-    const fetchCities = async () => {
+    const fetchData = async () => {
       try {
-        if (searchTerm.trim() === "") {
-          setSearchResults([]);
-          return;
-        }
-
-        const response = await fetch(
-          `http://api.weatherapi.com/v1/search.json?key=14a83ea940ef4d45b5b103446240401&q=${searchTerm}`
-        );
-
-        if (!response.ok) {
-          throw new Error("Errore nella ricerca delle città");
-        }
-
-        const data = await response.json();
-        setSearchResults(data);
-        setShowResults(true);
+        await fetchCities();
       } catch (error) {
         console.error("Errore nella ricerca delle città:", error);
       }
     };
 
-    fetchCities();
-  }, [searchTerm]);
+    fetchData();
+  }, [searchTerm, fetchCities]);
 
   const handleSearch = (query) => {
     setSearchTerm(query);
@@ -57,11 +63,11 @@ const SearchCity = () => {
       {showResults && searchTerm && (
         <ul className={styles.searchResults}>
           {searchResults.map((city) => (
-            <li key={city.id}>
-              <Link
+            <li key={city.id} >
+              <Link key={city.id}
                 to={`/details/${city.name}`}
                 className={styles.resultLink}
-                onClick={handleCityClick}
+                onClick={() => handleCityClick(city.name)}
               >
                 {city.name}, {city.country}
               </Link>

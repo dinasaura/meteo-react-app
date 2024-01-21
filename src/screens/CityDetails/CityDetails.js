@@ -6,6 +6,7 @@ import useFavoritesCities from "../../hooks/useFavoritesCities";
 import { v4 as uuidv4 } from "uuid";
 import { format } from "date-fns";
 import it from "date-fns/locale/it";
+import { apiKey } from "../../constants";
 
 const CityDetails = () => {
   const { cityName } = useParams();
@@ -20,18 +21,16 @@ const CityDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3001/api/weather/${cityName}`
+        const detailsResponse = await axios.get(
+          `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${cityName}&aqi=no`
         );
-
-        console.log("Dati API:", response.data);
-        const cityData = response.data;
+        const cityData = detailsResponse.data;
         setDetails(cityData);
 
         const forecastResponse = await axios.get(
-          `https://api.weatherapi.com/v1/forecast.json?key=14a83ea940ef4d45b5b103446240401&q=${cityName}&days=7&aqi=no&alerts=yes`
+          `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${cityName}&days=7&aqi=no&alerts=yes`
         );
-        console.log("Forecast Data:", forecastResponse.data);
+
         const forecastData = forecastResponse.data;
         setSevenDayForecast(
           forecastData.forecast && forecastData.forecast.forecastday
